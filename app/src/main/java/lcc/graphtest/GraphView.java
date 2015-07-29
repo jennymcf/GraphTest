@@ -64,7 +64,8 @@ public class GraphView extends SurfaceView {
             canvas.drawCircle(dataPoints[i].x  , dataPoints[i].y , 10, plotPaint);
         }
         Paint fitPaint = new Paint();
-        fitPaint.setColor(Color.GREEN);
+        fitPaint.setStrokeWidth(2);
+        fitPaint.setColor(Color.RED);
         Point[] fitPoints = graph.getFitPoints();
         for(int i = 1; i< fitPoints.length; i++){
             canvas.drawLine(fitPoints[i-1].x, fitPoints[i-1].y, fitPoints[i].x, fitPoints[i].y, fitPaint);
