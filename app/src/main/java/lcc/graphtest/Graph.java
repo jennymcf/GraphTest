@@ -26,6 +26,9 @@ public class Graph {
     private Line[] horizontalLines;
     private Line[] verticalLines;
     private CurveFit fit;
+    private int curveType;
+    private double[] fitParam;
+    private Point[] fitPoints;
 
 
 
@@ -170,12 +173,48 @@ public class Graph {
         computeHorizontalGrid();
         computeVerticalGrid();
     }
-/*
-    public void computeFit(){
-        if(curveFit == null && data.getNumPoints() > 1){
 
+    public void computeFit(){
+        if(data.getNumPoints() > 1) {
+            if (fit == null) {
+                fit = new CurveFit(data, curveType);
+                fitParam = fit.getParameters();
+            }
+            switch(curveType){
+                case CurveFit.QUAD:
+
+                    break;
+                case CurveFit.EXP:
+                    break;
+
+                default:
+                    fitPoints = new Point[2];
+                    fitPoints[0] = new Point();
+                    fitPoints[0].x =   unitSpace.toPixelX( unitSpace.getMinX());
+                    fitPoints[0].y =   unitSpace.toPixelY(fitParam[1] * unitSpace.getMinX() + fitParam[0]);
+                    fitPoints[1] = new Point();
+                    fitPoints[1].x =   unitSpace.toPixelX( unitSpace.getMaxX());
+                    fitPoints[1].y =   unitSpace.toPixelY( fitParam[1]*unitSpace.getMaxX() + fitParam[0]);
+                    break;
+
+            }
         }
-    }*/
+    }
+
+    public Point[] getFitPoints(){
+        if(fitPoints == null){
+            computeFit();
+        }
+        return this.fitPoints;
+    }
+
+    public void setFitType(int curveType){
+        this.curveType = curveType;
+    }
+
+    public int getCurveType(){
+        return this.curveType;
+    }
 
     public Line[] getVerticalGridlines(){
         return this.verticalLines;

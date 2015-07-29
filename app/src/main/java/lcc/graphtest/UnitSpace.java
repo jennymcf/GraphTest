@@ -143,6 +143,9 @@ public class UnitSpace {
         computeOrigin();
     }
 
+    public double getMaxX(){ return this.maxX;}
+
+
     /**
      * Sets the y value corresponding with the top edge of the drawing surface. Recomputes the scale
      * and origin to compensate for the new top edge value.
@@ -155,6 +158,7 @@ public class UnitSpace {
         computeOrigin();
     }
 
+    public double getMaxY(){ return this.maxY;}
 
     /**
      * Determines the number of pixels per user unit (e.g. pixels/meter) for the X axis. Returns

@@ -63,14 +63,20 @@ public class GraphView extends SurfaceView {
         for(int i = 0; i< dataPoints.length; i++){
             canvas.drawCircle(dataPoints[i].x  , dataPoints[i].y , 10, plotPaint);
         }
+        Paint fitPaint = new Paint();
+        fitPaint.setColor(Color.GREEN);
+        Point[] fitPoints = graph.getFitPoints();
+        for(int i = 1; i< fitPoints.length; i++){
+            canvas.drawLine(fitPoints[i-1].x, fitPoints[i-1].y, fitPoints[i].x, fitPoints[i].y, fitPaint);
+        }
     }
 
     private void init(){
         Rect drawingArea = new Rect(getLeft()+getPaddingLeft(), getTop()+getPaddingTop(), getRight()-getPaddingRight(), getBottom()-getPaddingBottom());
-        double [] xPoints = {-10.0, 20, 40, 20.2, 30};
-        double [] yPoints = {2, 40, 1.0, 2, -10.0};
-        DataSeries data = new DataSeries(xPoints, yPoints, 5);
+        double [] xPoints = {0, 1, 2, 3, 4, -2};
+        double [] yPoints = {11, 14, 21, 26, 29, 0};
+        DataSeries data = new DataSeries(xPoints, yPoints, 6);
         graph = new Graph(data, drawingArea);
-        graph.addPoint(100,5);
+        graph.setFitType(CurveFit.LINEAR);
     }
 }
