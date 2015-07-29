@@ -100,6 +100,7 @@ public class Graph {
             }
         }
         return tickSize;
+
     }
 
     /**
@@ -169,12 +170,12 @@ public class Graph {
         computeHorizontalGrid();
         computeVerticalGrid();
     }
-
+/*
     public void computeFit(){
         if(curveFit == null && data.getNumPoints() > 1){
 
         }
-    }
+    }*/
 
     public Line[] getVerticalGridlines(){
         return this.verticalLines;
