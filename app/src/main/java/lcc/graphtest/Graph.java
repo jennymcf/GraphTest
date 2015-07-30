@@ -3,6 +3,8 @@ package lcc.graphtest;
 import android.graphics.Point;
 import android.graphics.Rect;
 
+import java.text.DecimalFormat;
+
 /**
  * The Graph class encapsulates all of the computations needed to draw a grid, plot points,
  * draw lines, fill areas under a curve. To paint grid lines, use the method getGridlines, which
@@ -250,9 +252,12 @@ public class Graph {
         }
         horizontalLines = new Line[i+1];
         horizontalLabels = new String[i+1];
+        double y;
+        DecimalFormat dec = new DecimalFormat("@##");
         for(int j = 0; j <= i; j++){
-            yTick = unitSpace.toPixelY((min + j * gridSeriesY)*Math.pow(10,ny));
-            horizontalLabels[j] = "" + (min + j * gridSeriesY)*Math.pow(10,ny);
+            y = (min + j * gridSeriesY)*Math.pow(10,ny);
+            yTick = unitSpace.toPixelY(y);
+            horizontalLabels[j] = "" + dec.format(y);
             horizontalLines[j] = new Line(unitSpace.getLeft(), yTick, unitSpace.getRight(), yTick);
         }
     }
@@ -277,8 +282,11 @@ public class Graph {
         }
         verticalLines = new Line[i+1];
         verticalLabels = new String[i+1];
+        DecimalFormat dec = new DecimalFormat("@##");
+        double x;
         for(int j = 0; j <= i; j++){
-            verticalLabels[j] = "" + (min + j*gridSeriesX)*Math.pow(10,nx);
+            x = (min + j*gridSeriesX)*Math.pow(10,nx);
+            verticalLabels[j] = "" + dec.format(x);
             xTick = unitSpace.toPixelX((min + j*gridSeriesX)*Math.pow(10,nx));
             verticalLines[j] = new Line(xTick, unitSpace.getTop(), xTick, unitSpace.getBottom());
         }
