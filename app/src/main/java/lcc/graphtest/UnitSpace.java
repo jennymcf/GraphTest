@@ -219,6 +219,10 @@ public class UnitSpace {
         return py;
     }
 
+    public double toUserX(int pixelX){
+        return (pixelX - origin.x)/scaleX;
+    }
+
     /**
      * Determines the corresponding pixel location of an (x,y) value
      *

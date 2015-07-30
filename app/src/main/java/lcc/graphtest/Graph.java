@@ -182,6 +182,17 @@ public class Graph {
             }
             switch(curveType){
                 case CurveFit.QUAD:
+                    int length = unitSpace.toPixelX( unitSpace.getMaxX())-unitSpace.toPixelX( unitSpace.getMinX());
+                    fitPoints = new Point[length];
+                    int x;
+                    for(int i = 0; i< length; i++){
+                        x = (unitSpace.toPixelX(unitSpace.getMinX())) + i;
+                        fitPoints[i] = new Point();
+                        fitPoints[i].x = x;
+                        fitPoints[i].y = unitSpace.toPixelY(fitParam[0] + fitParam[1]*unitSpace.toUserX(x) + fitParam[2]*unitSpace.toUserX(x)*unitSpace.toUserX(x));
+
+
+                    }
 
                     break;
                 case CurveFit.EXP:
