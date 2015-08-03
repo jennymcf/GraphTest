@@ -74,9 +74,9 @@ public class GraphView extends SurfaceView {
 
     private void init(){
         Rect drawingArea = new Rect(getLeft()+getPaddingLeft(), getTop()+getPaddingTop(), getRight()-getPaddingRight(), getBottom()-getPaddingBottom());
-        double [] xPoints = {0,0.25,0.5,0.75,1.0,1.25};
-        double [] yPoints = {1.179,2.2970,2.6070,2.2340,.9931,0.0};
-        DataSeries data = new DataSeries(xPoints, yPoints, 6);
+        double [] xPoints = {0,0.267,0.50,0.701,0.901,1.101,1.301,1.502,1.702};
+        double [] yPoints = {0,0.10,0.2,0.3,0.4,0.5,0.6,0.7,0.8};
+        DataSeries data = new DataSeries(xPoints, yPoints, 9);
         graph = new Graph(data, drawingArea);
         graph.setFitType(CurveFit.QUAD);
     }
