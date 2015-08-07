@@ -19,6 +19,7 @@ import android.view.SurfaceView;
 public class GraphView extends SurfaceView {
     private Graph graph;
     private DataSeries data;
+    private int fitType = CurveFit.LINEAR;
 
 
     public GraphView(Context context) {
@@ -44,6 +45,7 @@ public class GraphView extends SurfaceView {
         }
         //if the data was empty don't compute
         if(graph != null) {
+            graph.setFitType(fitType);
             Line[] verticalLines = graph.getVerticalGridlines();
             String[] verticalLabels = graph.getVerticalLabels();
             for (int i = 0; i < verticalLines.length; i++) {
@@ -75,7 +77,7 @@ public class GraphView extends SurfaceView {
         Rect drawingArea = new Rect(getLeft()+getPaddingLeft(), getTop()+getPaddingTop(), getRight()-getPaddingRight(), getBottom()-getPaddingBottom());
         if(data != null){
             graph = new Graph(data, drawingArea);
-            graph.setFitType(CurveFit.QUAD);
+            graph.setFitType(fitType);
         }
 
     }
@@ -83,13 +85,20 @@ public class GraphView extends SurfaceView {
     public void setData(DataSeries data){
         this.data = data;
     }
-    /*
-    private void init(){
-        Rect drawingArea = new Rect(getLeft()+getPaddingLeft(), getTop()+getPaddingTop(), getRight()-getPaddingRight(), getBottom()-getPaddingBottom());
-        double [] xPoints = {0,0.267,0.50,0.701,0.901,1.101,1.301,1.502,1.702};
-        double [] yPoints = {0,0.10,0.2,0.3,0.4,0.5,0.6,0.7,0.8};
-        DataSeries data = new DataSeries(xPoints, yPoints, 9);
-        graph = new Graph(data, drawingArea);
-        graph.setFitType(CurveFit.EXP);
-    }*/
+
+
+    public void setCurveType(int type){
+        this.fitType = type;
+        if(graph!= null){
+            graph.setFitType(type);
+        }
+    }
+
+    public CurveFit getFit(){
+        CurveFit f = null;
+        if(graph != null){
+            f = graph.getFit();
+        }
+        return f;
+    }
 }

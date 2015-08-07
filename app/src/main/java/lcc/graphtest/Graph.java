@@ -260,6 +260,10 @@ public class Graph {
         return this.curveType;
     }
 
+    public CurveFit getFit(){
+        return this.fit;
+    }
+
     public Line[] getVerticalGridlines(){
         return this.verticalLines;
     }
